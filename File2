@@ -1,0 +1,239 @@
+Documentación 
+1.	A partir de la clase Calculadora, generar documentación a partir de JavaDoc. Emplear todas las etiquetas que aparecen en la diapositiva. 
+
+La documentación en JavaDoc es una forma de generar documentación de forma automática a partir del código fuente. Para ello, se utilizan etiquetas que comienzan con el símbolo "@" para añadir información sobre el código. A continuación, se muestra un ejemplo de cómo podría quedar la documentación de la clase "Calculadora" con todas las etiquetas de JavaDoc:
+
+/**
+ * La clase Calculadora representa una calculadora básica capaz de realizar operaciones aritméticas simples.
+ * Se puede utilizar para sumar, restar, multiplicar y dividir dos números enteros.
+ * También proporciona una opción para dividir por cero de dos formas diferentes.
+ */
+public class Calculadora {
+    
+    private int num1;
+    private int num2;
+    
+    /**
+     * Constructor de la clase que inicializa los dos números de la calculadora.
+     * @param a El primer número de la operación.
+     * @param b El segundo número de la operación.
+     */
+    public Calculadora(int a, int b){
+        num1=a;
+        num2=b;
+    }
+    
+    /**
+     * Realiza la operación de suma entre los dos números de la calculadora.
+     * @return El resultado de la suma.
+     */
+    public int suma(){
+        int result=num1+num2;
+        return result;
+    }
+    
+    /**
+     * Realiza la operación de resta entre los dos números de la calculadora.
+     * El resultado puede ser negativo si el segundo número es mayor que el primero.
+     * @return El resultado de la resta.
+     */
+    public int resta(){
+        int result;
+        if (resta2())   result = num1-num2;
+        else            result = num2-num1;
+        return result;
+    }
+        
+    /**
+     * Comprueba si el segundo número es mayor que el primero.
+     * @return true si el segundo número es mayor que el primero, false en caso contrario.
+     */
+    public boolean resta2(){
+        if (num1 > num2)    return true;
+        else                return false;
+    }
+    
+    /**
+     * Realiza la operación de multiplicación entre los dos números de la calculadora.
+     * @return El resultado de la multiplicación.
+     */
+    public int multiplica(){
+        int result=num1*num2;
+        return result;
+    }
+    
+    /**
+     * Realiza la operación de división entre los dos números de la calculadora.
+     * Si el segundo número es cero, devuelve un resultado nulo.
+     * @return El resultado de la división.
+     */
+    public int divide(){
+        int result=num1/num2;
+        return result;
+    }
+    
+    /**
+     * Realiza la operación de división entre los dos números de la calculadora.
+     * Si el segundo número es cero, devuelve un resultado nulo.
+     * @return El resultado de la división, o nulo si el segundo número es cero.
+     */
+    public Integer divide2(){
+        if(num2==0) return null;
+        int result=num1/num2;
+        return result;
+    }
+
+    /**
+     * Realiza la operación de división entre los dos números de la calculadora.
+     * Si el segundo número es cero, lanza una excepción de tipo ArithmeticException.
+     * @return El resultado de la división.
+     * @throws ArithmeticException Si el segundo número es cero.
+     */
+     public int divide0() throws ArithmeticException {
+        if(num2==0) 
+            throw new java.lang.ArithmeticException("División por 0");
+       
+ 
+2.	Repetir el ejercicio anterior con las clases Factorial y Fecha, generando la documentación a partir de JavaDoc. Emplear todas las etiquetas que aparecen en la diapositiva. 
+ 
+GitHub 
+3.	Crear una cuenta en GitHub. 
+ 
+4.	En la cuenta anterior, crear un repositorio llamado Calculadora. 
+ 
+5.	Bajar el repositorio Calculadora a la copia local. Hacer capturas de todo el proceso. 
+
+Para bajar el repositorio Calculadora a la copia local, se debe hacer lo siguiente:
+
+a. En NetBeans, seleccionar Team > Git > Clone
+b. En la ventana de Clone Repository, pegar la URL del repositorio de GitHub y seleccionar el directorio donde se quiere clonar el repositorio localmente
+c. Hacer clic en Next y seleccionar la rama master para clonar
+d. Hacer clic en Finish y esperar a que se clone el repositorio
+ 
+6.	Completar el proyecto con la clase Calculadora trabajada en clase (con copiar y pegar el archivo .java es suficiente) y subir los archivos a GitHub. Comprobar que los cambios se han actualizado en el repositorio anteriormente creado. Hacer capturas de todo el proceso. 
+Para completar el proyecto con la clase Calculadora y subir los archivos a GitHub, se debe hacer lo siguiente:
+
+a. Copiar el archivo Calculadora.java con el código que se quiere añadir al proyecto
+b. En NetBeans, abrir el proyecto Calculadora y pegar el archivo Calculadora.java en la carpeta src/calculadora
+c. Hacer clic derecho sobre el proyecto y seleccionar Git > Commit
+d. Seleccionar los archivos que se quieren añadir al commit y escribir un mensaje descriptivo
+e. Hacer clic en Commit
+f. En NetBeans, hacer clic derecho sobre el proyecto y seleccionar Git > Remote > Push
+g. Seleccionar la rama master y hacer clic en Next
+h. Hacer clic en Finish y esperar a que se suban los cambios al repositorio en GitHub
+ 
+7.	Realizar cambios en la clase Calculadora directamente en el repositorio de GitHub (por ejemplo, añadiendo un comentario). Actualizar los cambios en la copia local y comprobar que los cambios se han actualizado. Hacer capturas de todo el proceso.
+  
+Para realizar cambios en la clase Calculadora directamente en el repositorio de GitHub y actualizarlos en la copia local, se debe hacer lo siguiente:
+
+a. En el repositorio de GitHub, abrir el archivo Calculadora.java y hacer clic en el botón de lápiz para editarlo
+b. Realizar los cambios deseados en el archivo y escribir un mensaje descriptivo en el campo de Commit changes
+c. Hacer clic en Commit changes
+d. En NetBeans, hacer clic derecho sobre el proyecto y seleccionar Git > Remote > Pull
+e. Seleccionar la rama master y hacer clic en Next
+f. Hacer clic en Finish y esperar a que se actualicen los cambios en la copia local
+ 
+8.	Comprobar lo que ocurre si se modifica el proyecto Calculadora en local (por ejemplo, añadiendo un comentario), y se vuelve a bajar el repositorio a la copia local. Hacer capturas de todo el proceso. 
+
+Para realizar cambios en la clase Calculadora directamente en el repositorio de GitHub y actualizarlos en la copia local, se debe hacer lo siguiente:
+
+a. En el repositorio de GitHub, abrir el archivo Calculadora.java y hacer clic en el botón de lápiz para editarlo
+b. Realizar los cambios deseados en el archivo y escribir un mensaje descriptivo en el campo de Commit changes
+c. Hacer clic en Commit changes
+d. En NetBeans, hacer clic derecho sobre el proyecto y seleccionar Git > Remote > Pull
+e. Seleccionar la rama master y hacer clic en Next
+f. Hacer clic en Finish y esperar a que se actualicen los cambios en la copia local
+ 
+9.	Desde NetbBeans crear en el repositorio Calculadora una rama llamada “rama1”. Hacer capturas de todo el proceso.  
+
+    Para comprobar lo que ocurre si se modifica el proyecto Calculadora en local y se vuelve a bajar el repositorio a la copia local, se debe hacer lo siguiente:
+
+    a. En NetBeans, abrir el proyecto Calculadora y realizar los cambios deseados en el archivo Calculadora.java
+    b. Hacer clic derecho sobre el proyecto y seleccionar Git > Commit
+    c. Seleccionar los archivos que se quieren añadir al commit y escribir un mensaje descriptivo
+    d. Hacer clic en Commit
+    e. En NetBeans, hacer clic derecho sobre el proyecto y seleccionar Git > Remote > Push
+    f. Seleccionar la rama master y hacer clic en Next
+    g. Hacer clic en Finish y esperar a que se suban los cambios al repositorio en GitHub
+    h. En GitHub, comprobar que los cambios se han actualizado correctamente
+    i. En NetBeans, hacer clic derecho sobre el proyecto y seleccionar Team > Git > Remote > Fetch
+    j. Seleccionar la rama master y hacer clic en Next
+    k. Hacer clic en Finish y esperar a que se actualicen los cambios en la copia local
+    l. Comprobar que los cambios realizados
+
+ 
+10.	Identificar el archivo Calculadora.java de rama1 con un comentario que diga “rama1” y subir los cambios a GitHub. Comprobar que los cambios se han actualizado en la rama anteriormente creada. Hacer capturas de todo el proceso.  
+
+    Ahora vamos a fusionar la rama1 con la rama principal (master) para ello, desde NetBeans, nos dirigimos a Equipo -> Git -> Fusionar. En el cuadro de diálogo que se abre, seleccionamos la rama principal (master) en la parte superior y en la parte inferior seleccionamos la rama1. Luego hacemos clic en Aceptar y esperamos a que se realice la fusión.
+
+    Una vez finalizada la fusión, debemos confirmar los cambios y subirlos al repositorio de GitHub. Para ello, desde NetBeans, nos dirigimos a Equipo -> Git -> Confirmar y después a Equipo -> Git -> Empujar.
+
+    Por último, comprobamos que los cambios se han actualizado correctamente en el repositorio de GitHub. Para ello, accedemos a la página del repositorio y nos aseguramos de que la fusión se ha realizado correctamente y de que el archivo Calculadora.java contiene el comentario que hemos añadido en la rama1.
+
+
+
+ 
+Comandos GitHub 
+Se realizan en una máquina virtual Linux. Comandos necesarios para: 
+ 
+11.	Instalar el SCV git en Linux y Windows. 
+ 
+12.	Bajar el repositorio Calculadora a la copia local. 
+
+git clone https://github.com/usuario/Calculadora.git
+
+
+ 
+13.	Modificar la clase Calculadora (por ejemplo, añadiendo un comentario).
+
+cd Calculadora
+
+nano Calculadora.java
+
+
+ 
+14.	Subir los archivos a GitHub. Comprobar que los cambios se han actualizado en el repositorio. 
+
+git add Calculadora.java
+
+git commit -m "Añadiendo un comentario a la clase Calculadora"
+
+git push
+ 
+15.	Realizar cambios en la clase Calculadora directamente en el repositorio de GitHub (por ejemplo, añadir un comentario). Actualizar los cambios en la copia local y comprobar que los cambios se han actualizado.  
+
+$ git remote update
+$ git pull origin master
+$ git add Calculadora.java
+$ git commit -m "Añadido comentario en Calculadora.java"
+$ git push origin master
+ 
+16.	Modificar el proyecto Calculadora en local (por ejemplo, añadiendo un comentario), y volver a bajar el repositorio a la copia local. 
+
+$ git add .
+$ git commit -m "Añadido comentario en el proyecto"
+$ git pull origin master
+ 
+17.	Crear en el repositorio Calculadora una rama llamada “rama2”. 
+
+$ git checkout -b rama2
+ 
+18.	Identificar el archivo Calculadora.java de rama2 con un comentario que diga “rama2” y subir los cambios a GitHub. Comprobar que los cambios se han actualizado en la rama anteriormente creada. 
+
+$ git checkout rama2
+$ nano Calculadora.java
+// agregar comentario "rama2" en el archivo Calculadora.java
+$ git add Calculadora.java
+$ git commit -m "Identificado archivo Calculadora.java de rama2"
+$ git push origin rama2
+ 
+19.	Modificar el comentario del archivo Calculadora.java de rama2 y subir los cambios a GitHub. Comprobar que los cambios se han actualizado en la rama anteriormente creada. ¿En qué se diferencian los comandos respecto al ejercicio anterior? 
+
+$ git checkout rama2
+$ nano Calculadora.java
+// modificar el comentario en el archivo Calculadora.java
+$ git add Calculadora.java
+$ git commit -m "Modificado comentario en Calculadora.java en rama2"
+$ git push origin rama2
+
+La principal diferencia entre los comandos utilizados en el ejercicio 18 y en el ejercicio 19 es que en el ejercicio 18, se creó un nuevo archivo y se agregó un comentario en él, mientras que en el ejercicio 19, se modificó un archivo existente y se cambió el comentario en él. Los demás comandos son similares en ambos ejercicios.
