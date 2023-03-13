@@ -1,0 +1,133 @@
+1.	Dado el siguiente código: 
+public class Refactor{     public double compute(int numberOfDays) { 
+        ... 
+    } 
+} 
+ 
+    ... 
+    int daysRented = 4; 
+ 
+    double price = movie.compute(daysRented); 
+    ... 
+ 
+Cambiar el nombre del método y su invocación por getCharge(). 
+
+Para cambiar el nombre del método "compute" a "getCharge" en NetBeans, siga los siguientes pasos:
+
+    Abra el archivo que contiene la clase "Refactor".
+    Seleccione el nombre del método "compute" en la definición de la clase.
+    Presione la tecla F2 o haga clic con el botón derecho en el nombre del método y seleccione "Refactor" y luego "Rename".
+    Escriba "getCharge" como el nuevo nombre del método y presione Enter.
+    Guarde los cambios en el archivo.
+
+Para invocar el método "getCharge" en lugar de "compute", debe cambiar el código que llama al método. Por lo tanto, cambie la línea de código:
+
+double price = movie.compute(daysRented);
+
+a:
+
+double price = movie.getCharge(daysRented);
+
+Después de realizar estos cambios, el método "compute" se habrá renombrado a "getCharge" y se invocará correctamente en el código actualizado.
+ 
+2.	Dado el siguiente código: 
+double ej2(double quantity, double itemPrice) { double basePrice = quantity * itemPrice; if (basePrice > 1000) 
+ 	 	return basePrice * 0.95; else 
+ 	 	return basePrice * 0.98; 
+} 
+ 
+Calcular el valor de basePrice en un método basePrice(). 
+
+Para calcular el valor de "basePrice" en un método "basePrice()" en NetBeans, puede seguir los siguientes pasos:
+1.	Agregue un nuevo método a la clase que contenga el código existente:
+public double basePrice(double quantity, double itemPrice) {
+    return quantity * itemPrice;
+}
+
+Reemplace la variable "basePrice" en el método "ej2()" con una llamada al nuevo método "basePrice()":
+
+double basePrice = basePrice(quantity, itemPrice);
+
+Guarde los cambios en el archivo.
+Después de realizar estos cambios, puede invocar el método "ej2()" para calcular el precio final del producto, y el valor de "basePrice" se calculará en el nuevo método "basePrice()".
+
+ 
+3.	Dado el siguiente código: 
+double price(int quantity, int itemPrice) { 
+    // price is base price - quantity discount + shipping     return quantity * itemPrice - 
+        Math.max(0, quantity - 500) * itemPrice * 0.05 + 
+        Math.min(quantity * itemPrice * 0.1, 100.0); 
+} 
+ 
+Extraer un método para el precio base, otro para los gastos de envío y un tercero para calcular el descuento. 
+
+Para extraer un método para el precio base, otro para los gastos de envío y un tercero para calcular el descuento en NetBeans, puede seguir los siguientes pasos:
+Agregue un nuevo método "basePrice()" que calcule el precio base del producto:
+public double basePrice(int quantity, int itemPrice) {
+    return quantity * itemPrice;
+}
+Agregue un nuevo método "shippingCost()" que calcule los gastos de envío:
+public double shippingCost(int quantity, int itemPrice) {
+    return Math.min(quantity * itemPrice * 0.1, 100.0);
+}
+Agregue un nuevo método "quantityDiscount()" que calcule el descuento en función de la cantidad de productos comprados:
+public double quantityDiscount(int quantity, int itemPrice) {
+    return Math.max(0, quantity - 500) * itemPrice * 0.05;
+}
+
+Actualice el método "price()" para llamar a los nuevos métodos que acaba de crear:
+public double price(int quantity, int itemPrice) {
+    // price is base price - quantity discount + shipping
+    return basePrice(quantity, itemPrice) -
+           quantityDiscount(quantity, itemPrice) +
+           shippingCost(quantity, itemPrice);
+}
+Guarde los cambios en el archivo.
+Después de realizar estos cambios, el método "price()" se habrá actualizado para llamar a los nuevos métodos que calculan el precio base, los gastos de envío y el descuento por cantidad, lo que hará que el código sea más legible y modular.
+
+
+4.	Dado el siguiente código: 
+public class Account {     private AccountType type;     private int daysOverdrawn; 
+    ... 
+    double overdraftCharge() {         if (type.isPremium()) {              double result = 10; 
+             if (daysOverdrawn > 7) result += (daysOverdrawn - 7) * 0.85;              return result; 
+        } 
+        else return daysOverdrawn * 1.75; 
+    } 
+ 
+    double bankCharge() {         double result = 4.5; 
+        if (daysOverdrawn > 0) result += overdraftCharge();         return result; 
+    } 
+} 
+   
+Mover el método overdraftCharge() a la clase AccountType y mantener el método overdraftCharge() en Account, que realiza una llamada el método trasladado. 
+ 
+Para mover el método "overdraftCharge()" a la clase "AccountType" y mantener el método "overdraftCharge()" en "Account", que realiza una llamada al método trasladado, puede seguir los siguientes pasos:
+Agregue el método "overdraftCharge()" a la clase "AccountType":
+public double overdraftCharge(int daysOverdrawn) {
+    double result = 10;
+    if (daysOverdrawn > 7) result += (daysOverdrawn - 7) * 0.85;
+    return result;
+}
+
+Actualice el método "overdraftCharge()" en la clase "Account" para llamar al nuevo método en "AccountType":
+
+double overdraftCharge() {
+    if (type.isPremium()) {
+        return type.overdraftCharge(daysOverdrawn);
+    }
+    else {
+        return daysOverdrawn * 1.75;
+    }
+}
+
+Actualice el método "bankCharge()" en la clase "Account" para usar el nuevo método "overdraftCharge()" en lugar del antiguo:
+
+double bankCharge() {
+    double result = 4.5;
+    if (daysOverdrawn > 0) result += type.overdraftCharge(daysOverdrawn);
+    return result;
+}
+
+Guarde los cambios en el archivo.
+Después de realizar estos cambios, el método "overdraftCharge()" se habrá movido a la clase "AccountType" y ambos métodos "overdraftCharge()" en la clase "Account" llaman al método trasladado en "AccountType". Esto hace que el código sea más modular y facilita la creación de nuevos tipos de cuenta con diferentes reglas de sobregiro.
