@@ -1,0 +1,105 @@
+6. Desarrolla una batería de pruebas para probar el método DevuelveFecha() de la clase Fecha que se expone a continuación. El método recibe un número entero y devuelve un String con un formato de fecha que dependerá del valor de dicho número. Si el número recibido es distinto de 1, 2 y 3, el método devuelve ERROR. La clase es la siguiente: 
+public class Fecha { 
+    SimpleDateFormat formato; 
+    Date hoy;      
+    public Fecha(){         hoy=new Date(); 
+    }      
+    public String devuelveFecha(int tipo){         String cad="";         switch (tipo){             case 1:{                 formato=new SimpleDateFormat("yyyy/MM");                 cad=formato.format(hoy);                 break; 
+            }             case 2: {                 formato=new SimpleDateFormat("MM/yyyy");                 cad=formato.format(hoy);                 break;             }             case 3: {                 formato=new SimpleDateFormat("MM/yy");                 cad=formato.format(hoy);                 break;             }             default:{                 cad="ERROR"; 
+            }         }         return cad; 
+    } 
+} 
+ import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Collection;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
+import static org.junit.Assert.*;
+
+@RunWith(Parameterized.class)
+public class FechaTest {
+    
+    private final int tipo;
+    private final String expectedOutput;
+    
+    public FechaTest(int tipo, String expectedOutput) {
+        this.tipo = tipo;
+        this.expectedOutput = expectedOutput;
+    }
+    
+    @Parameters
+    public static Collection<Object[]> data() {
+        Object[][] data = {
+            {1, new SimpleDateFormat("yyyy/MM").format(new Date())},
+            {2, new SimpleDateFormat("MM/yyyy").format(new Date())},
+            {3, new SimpleDateFormat("MM/yy").format(new Date())},
+            {4, "ERROR"}
+        };
+        return Arrays.asList(data);
+    }
+
+    @Test
+    public void testDevuelveFecha() {
+        Fecha instance = new Fecha();
+        String result = instance.devuelveFecha(tipo);
+        assertEquals(expectedOutput, result);
+    }
+}
+
+
+7. Escribe una clase de pruebas para probar el método calculo() de la clase Factorial. En el método se comprueba si el numero es menor que 0, en este caso se lanza la excepción IllegalArgumentException con el mensaje Número no puede ser <0. Si el valor del factorial calculado es menor que 0, es que ha ocurrido un error de desbordamiento. En este caso se lanza la excepción ArithmeticException y se lanza el mensaje Overflow, número n demasiado grande. La clase a probar es la siguiente: 
+public class Factorial {     public static int calculo(int n){         if(n<0){             throw new IllegalArgumentException("Número " +n+ " no puede ser < que 0"); 
+        }         int fact=1;         for(int i=2 ;i<=n ; i++)             fact*=i;         if (fact<0){             throw new ArithmeticException("Overflow, núemro "+n+" demasiado grande"); 
+        } 
+        return fact; 
+    } 
+} 
+
+import static org.junit.Assert.*;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
+import java.util.Arrays;
+import java.util.Collection;
+
+@RunWith(Parameterized.class)
+public class FactorialTest {
+    
+    private int n;
+    private int expectedOutput;
+    private Class<? extends Exception> expectedException;
+    private String expectedExceptionMessage;
+    
+    public FactorialTest(int n, int expectedOutput, Class<? extends Exception> expectedException, String expectedExceptionMessage) {
+        this.n = n;
+        this.expectedOutput = expectedOutput;
+        this.expectedException = expectedException;
+        this.expectedExceptionMessage = expectedExceptionMessage;
+    }
+    
+    @Parameters(name = "{index}: Factorial.calculo({0})={1}, throws {2}({3})")
+    public static Collection<Object[]> data() {
+        return Arrays.asList(new Object[][] {
+            { 0, 1, null, null },
+            { 1, 1, null, null },
+            { 5, 120, null, null },
+            { 10, 3628800, null, null },
+            { -5, 0, IllegalArgumentException.class, "Número -5 no puede ser < que 0" },
+            { 13, 0, ArithmeticException.class, "Overflow, número 13 demasiado grande" }
+        });
+    }
+    
+    @Test
+    public void testCalculo() {
+        if (expectedException != null) {
+            Exception exception = assertThrows(expectedException, () -> Factorial.calculo(n));
+            assertEquals(expectedExceptionMessage, exception.getMessage());
+        } else {
+            assertEquals(expectedOutput, Factorial.calculo(n));
+        }
+    }
+}
+
